@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - พิสิษฐ์ หุนตระนี | Computer Science Teacher</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- Configuration --- */
+        :root {
+            --primary: #0f172a; /* สีเข้มสำหรับหัวข้อ */
+            --accent: #f97316;  /* สีส้มสำหรับปุ่ม/เน้น */
+            --light-bg: #f8fafc;
+            --white: #ffffff;
+            --text-main: #334155;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        /* --- Reset & Base --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-main);
+            line-height: 1.7;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Prompt', sans-serif;
+            color: var(--primary);
+            line-height: 1.3;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Navigation --- */
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Prompt', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--primary);
+        }
+
+        .nav-links { display: flex; gap: 1.5rem; }
+        
+        .nav-links a {
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent);
+            background: #fff7ed;
+        }
+
+        /* --- Buttons --- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-family: 'Prompt', sans-serif;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+        }
+
+        .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+        .btn-primary { background-color: var(--accent); color: var(--white); }
+        .btn-primary:hover { background-color: #ea580c; }
+        .btn-outline { border: 2px solid var(--primary); color: var(--primary); background: transparent; }
+        .btn-outline:hover { background-color: var(--primary); color: var(--white); }
+
+        /* --- Hero Section --- */
+        .hero {
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            padding: 4rem 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 240px; 
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .hero-content h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .hero-content h2 { font-size: 1.25rem; color: var(--text-muted); font-weight: 400; margin-bottom: 1.5rem; }
+        
+        .profile-img {
+            width: 220px; 
+            height: 220px;
+            object-fit: cover;
+            border-radius: 16px; 
+            box-shadow: var(--shadow);
+            border: 3px solid var(--white);
+            background-color: #e2e8f0;
+        }
+
+        /* --- Section Styling --- */
+        section { padding: 4rem 0; }
+        
+        .section-header {
+            margin-bottom: 2.5rem;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-icon {
+            font-size: 1.5rem;
+            color: var(--accent);
+            background: #fff7ed;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+        }
+
+        .section-title { font-size: 1.75rem; }
+
+        /* --- Cards --- */
+        .card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        .info-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .info-item { display: flex; align-items: flex-start; gap: 1rem; }
+        .info-icon { color: var(--accent); margin-top: 4px; }
+        .info-label { font-size: 0.85rem; color: var(--text-muted); display: block; margin-bottom: 0.25rem; }
+        .info-value { font-weight: 600; color: var(--primary); }
+
+        /* --- Timeline --- */
+        .timeline { position: relative; padding-left: 2rem; border-left: 2px solid var(--border); }
+        .timeline-item { position: relative; margin-bottom: 2.5rem; }
+        .timeline-item::before {
+            content: ''; position: absolute; left: -2.5rem; top: 0; width: 12px; height: 12px;
+            background: var(--accent); border-radius: 50%; border: 3px solid var(--white);
+        }
+        .role-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.25rem; }
+        .role-place { color: var(--accent); font-weight: 500; margin-bottom: 0.75rem; }
+        .role-list { margin-top: 1rem; margin-left: 1rem; }
+        .role-list li { position: relative; margin-bottom: 0.5rem; padding-left: 1.5rem; color: var(--text-main); }
+        .role-list li::before { content: "•"; color: var(--accent); font-weight: bold; position: absolute; left: 0; }
+
+        /* --- Project Box --- */
+        .project-box {
+            background: var(--white); border-radius: 16px; overflow: hidden;
+            border: 1px solid var(--border); box-shadow: var(--shadow);
+        }
+
+        .project-header { background: var(--primary); color: var(--white); padding: 2rem; }
+        .project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; padding: 2rem; }
+        .project-col h4 { font-size: 1.1rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 0.5rem; }
+
+        /* --- Project Gallery --- */
+        .project-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem;
+            background: #f8fafc;
+            border-top: 1px solid var(--border);
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            background: var(--white);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover img { transform: scale(1.05); }
+
+        .gallery-caption {
+            padding: 0.75rem;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-main);
+            border-top: 1px solid #eee;
+        }
+
+        /* --- Tags --- */
+        .tag-container { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+        .tag { background: #fff; border: 1px solid var(--border); padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.95rem; color: var(--text-main); display: flex; align-items: center; gap: 0.5rem; transition: 0.3s; }
+        .tag:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+        .tag i { color: var(--accent); }
+
+        /* --- Footer --- */
+        footer { background: var(--primary); color: var(--white); text-align: center; padding: 3rem 0; margin-top: 4rem; }
+        .contact-footer { font-size: 1.5rem; margin-top: 1rem; }
+        .contact-footer a { margin: 0 1rem; color: rgba(255,255,255,0.8); }
+        .contact-footer a:hover { color: var(--accent); }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            .hero-grid { grid-template-columns: 1fr; text-align: center; }
+            .profile-img { width: 180px; height: 180px; margin: 0 auto; border-radius: 50%; } 
+            .nav-content { flex-direction: column; gap: 1rem; }
+            .nav-links { gap: 0.5rem; flex-wrap: wrap; justify-content: center; }
+            .project-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-content">
+            <div class="nav-logo">Pisit.H</div>
+            <div class="nav-links">
+                <a href="#profile">ข้อมูลส่วนตัว</a>
+                <a href="#education">วุฒิการศึกษา</a>
+                <a href="#experience">ประสบการณ์</a>
+                <a href="#project">ผลงานโครงการ</a>
+                <a href="#competencies">ความสามารถ</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <h2>ครูอัตราจ้าง สายคอมพิวเตอร์ | วิทยาลัยเทคนิคนางรอง</h2>
+                <h1>นายพิสิษฐ์ หุนตระนี</h1>
+                <p style="color: var(--text-muted); margin-bottom: 2rem; max-width: 600px;">
+                    ผู้เชี่ยวชาญด้านวิทยาการคอมพิวเตอร์และเทคโนโลยีสารสนเทศ 
+                    มุ่งเน้นการพัฒนาระบบเพื่อสถานศึกษา และการประยุกต์ใช้เทคโนโลยีดิจิทัลเพื่อเพิ่มประสิทธิภาพการทำงาน
+                </p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; md:justify-content: start;">
+                    <a href="#contact" class="btn btn-primary"><i class="fas fa-phone"></i> ติดต่อฉัน</a>
+                    <a href="#project" class="btn btn-outline"><i class="fas fa-folder-open"></i> ดูผลงาน</a>
+                </div>
+            </div>
+            <!-- Profile Image (Updated to Formal Suit) -->
+            <img src="https://z-cdn-media.chatglm.cn/files/ecbf5efd-2a93-48fa-976f-1e88b73945fb.jpg?auth_key=1868269897-6cd06ad9d44841d199e0c67e21d36bd6-0-e0654f224c06ba58b443730c99a86e52" alt="พิสิษฐ์ หุนตระนี" class="profile-img">
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- 1. Personal Info -->
+        <section id="profile">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-user-circle"></i></div>
+                <h2 class="section-title">ข้อมูลส่วนบุคคล</h2>
+            </div>
+            <div class="card">
+                <div class="info-list">
+                    <div class="info-item">
+                        <i class="fas fa-id-card info-icon"></i>
+                        <div><span class="info-label">ชื่อ - สกุล</span><div class="info-value">นายพิสิษฐ์ หุนตระนี</div></div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-birthday-cake info-icon"></i>
+                        <div><span class="info-label">วันเดือนปีเกิด</span><div class="info-value">6 มกราคม พ.ศ. 2543</div></div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-flag info-icon"></i>
+                        <div><span class="info-label">สัญชาติ / เชื้อชาติ</span><div class="info-value">ไทย / ไทย</div></div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-om info-icon"></i>
+                        <div><span class="info-label">ศาสนา</span><div class="info-value">พุทธ</div></div>
+                    </div>
+                    <div class="info-item" style="grid-column: 1 / -1;">
+                        <i class="fas fa-map-marker-alt info-icon"></i>
+                        <div><span class="info-label">ที่อยู่</span><div class="info-value">9/2 ถนนศรีภูเจริญ ตำบลนางรอง อำเภอนางรอง จังหวัดบุรีรัมย์ 31100</div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Education -->
+        <section id="education">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-graduation-cap"></i></div>
+                <h2 class="section-title">วุฒิการศึกษา</h2>
+            </div>
+            <div class="card timeline">
+                <div class="timeline-item">
+                    <div class="role-title">ปริญญาตรี วิทยาศาสตรบัณฑิต (วท.บ.)</div>
+                    <div class="role-place">สาขาวิทยาการคอมพิวเตอร์ (Computer Science) | คณะวิทยาศาสตร์</div>
+                    <div class="role-desc" style="background: #f1f5f9; padding: 1rem; border-radius: 8px; margin-top: 1rem; border-left: 4px solid var(--accent);">
+                        <strong>ความสามารถพื้นฐาน:</strong><br>มีพื้นฐานความรู้ด้านการเขียนโปรแกรม การพัฒนาระบบสารสนเทศ การวิเคราะห์และออกแบบระบบ รวมถึงการประยุกต์ใช้เทคโนโลยีดิจิทัลเพื่อองค์กรและสถานศึกษา
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Experience -->
+        <section id="experience">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-briefcase"></i></div>
+                <h2 class="section-title">ประสบการณ์ทำงาน</h2>
+            </div>
+            <div class="card timeline">
+                <div class="timeline-item">
+                    <div class="role-title">ครูพิเศษสอน สาขาคอมพิวเตอร์ (ครูอัตราจ้าง)</div>
+                    <div class="role-place">แผนกวิชาคอมพิวเตอร์ | วิทยาลัยเทคนิคนางรอง</div>
+                    <ul class="role-list">
+                        <li>ถ่ายทอดความรู้ด้านคอมพิวเตอร์และเทคโนโลยีสารสนเทศให้แก่นักเรียนระดับอาชีวศึกษา</li>
+                        <li>สอนพื้นฐานการใช้งานคอมพิวเตอร์ ระบบสารสนเทศ และการเขียนโปรแกรม</li>
+                        <li>สนับสนุนการจัดการเรียนการสอนด้านดิจิทัลและเทคโนโลยี</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <div class="role-title">ฝึกประสบการณ์วิชาชีพด้านเทคโนโลยีสารสนเทศ</div>
+                    <div class="role-place">ตำแหน่ง IT Support | โรงพยาบาลนางรอง</div>
+                    <ul class="role-list">
+                        <li>ดูแล บำรุงรักษา และแก้ไขปัญหาระบบคอมพิวเตอร์ภายในองค์กร</li>
+                        <li>สนับสนุนการใช้งานระบบสารสนเทศแก่บุคลากรทางการแพทย์และเจ้าหน้าที่</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Project Section -->
+        <section id="project">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-laptop-code"></i></div>
+                <h2 class="section-title">ผลงานโครงการ: Information Kiosk & Appointment System</h2>
+            </div>
+            
+            <div class="project-box">
+                <div class="project-header">
+                    <h3 style="font-size: 1.75rem; margin-bottom: 0.5rem;">ตู้ประชาสัมพันธ์อัจฉริยะ (Smart PR Kiosk)</h3>
+                    <p style="opacity: 0.9;">โครงการพัฒนาตู้ประชาสัมพันธ์อัจฉริยะ | วิทยาลัยเทคนิคนางรอง</p>
+                </div>
+                
+                <div class="project-grid">
+                    <div class="project-col">
+                        <h4><i class="fas fa-clipboard-list"></i> รายละเอียดโครงการ</h4>
+                        <p style="margin-bottom: 1rem; color: var(--text-muted);">พัฒนาระบบตู้ประชาสัมพันธ์อิเล็กทรอนิกส์ (Kiosk) เพื่อเป็นศูนย์กลางการให้ข้อมูลและบริการนัดหมาย</p>
+                        <ul class="role-list">
+                            <li><strong>วิเคราะห์:</strong> วิเคราะห์ปัญหาและความต้องการของหน่วยงาน</li>
+                            <li><strong>ออกแบบ:</strong> ออกแบบโครงสร้างระบบตู้ Kiosk ให้เหมาะสมกับบริบท</li>
+                            <li><strong>พัฒนา:</strong> ข่าวสาร, ข้อมูลแผนกวิชา, ระบบนัดหมาย</li>
+                            <li><strong>จัดการข้อมูล:</strong> ปรับปรุงระบบให้สามารถใช้งานได้จริง</li>
+                        </ul>
+                    </div>
+                    <div class="project-col">
+                        <h4><i class="fas fa-chart-line"></i> ผลลัพธ์</h4>
+                        <ul class="role-list">
+                            <li>เพิ่มประสิทธิภาพการประชาสัมพันธ์ข้อมูล</li>
+                            <li>ลดภาระงานด้านการให้ข้อมูลของเจ้าหน้าที่</li>
+                            <li>ลดความแออัดในการติดต่อราชการ</li>
+                            <li>ส่งเสริมภาพลักษณ์ด้านเทคโนโลยีของวิทยาลัย</li>
+                            <li>ประยุกต์ใช้ความรู้ด้าน CS ในงานจริง</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Project Gallery -->
+                <div class="project-gallery">
+                    <!-- Image 1 -->
+                    <div class="gallery-item">
+                        <img src="https://z-cdn-media.chatglm.cn/files/24a6a2a3-8f0f-4ddf-8e5b-0decf897bee5.jpg?auth_key=1868208901-7140ff0b65c44e75b3899a4ae632f4af-0-d74dc30ab6e8857e28d7587b56a1041d" alt="การพัฒนาโปรเจกต์">
+                        <div class="gallery-caption">กระบวนการพัฒนาระบบ</div>
+                    </div>
+                    
+                    <!-- Image 2 -->
+                    <div class="gallery-item">
+                        <img src="https://z-cdn-media.chatglm.cn/files/4cc22817-6d38-4011-bd08-0984ef7f9791.jpg?auth_key=1868208901-def0015793ab48649b738b82e086c5a6-0-0ef8f83671b42df7cb1708ca4fa902b6" alt="ตู้ประชาสัมพันธ์">
+                        <div class="gallery-caption">ระบบตู้ประชาสัมพันธ์จริง</div>
+                    </div>
+                    
+                    <!-- Image 3 -->
+                    <div class="gallery-item">
+                        <img src="https://z-cdn-media.chatglm.cn/files/549d1664-a464-4c0e-9419-284cf752f59d.jpg?auth_key=1868208901-6919a5acf1314059a90216f4335e8c84-0-e9c5bd4f251e348688e27cb9dcde1988" alt="งานนิทรรศการ">
+                        <div class="gallery-caption">การนำเสนอในงานเทคโนโลยี</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5 & 6. Competencies -->
+        <section id="competencies">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-tools"></i></div>
+                <h2 class="section-title">ความรู้ความสามารถ & แนวทางความสนใจ</h2>
+            </div>
+            <div class="card">
+                <h3 style="margin-bottom: 1.5rem; font-size: 1.25rem;">Academic & Technical Competencies</h3>
+                <div class="tag-container">
+                    <div class="tag"><i class="fas fa-code"></i> วิทยาการคอมพิวเตอร์</div>
+                    <div class="tag"><i class="fas fa-project-diagram"></i> การวิเคราะห์และออกแบบระบบ</div>
+                    <div class="tag"><i class="fas fa-laptop-code"></i> การเขียนโปรแกรม</div>
+                    <div class="tag"><i class="fas fa-database"></i> การพัฒนาระบบสารสนเทศ</div>
+                    <div class="tag"><i class="fas fa-school"></i> ระบบสำหรับการศึกษา</div>
+                    <div class="tag"><i class="fas fa-cogs"></i> IT Support</div>
+                </div>
+
+                <h3 style="margin: 2rem 0 1.5rem 0; font-size: 1.25rem;">แนวทางความสนใจทางวิชาการ</h3>
+                <div class="tag-container">
+                    <div class="tag"><i class="fas fa-bullseye"></i> ระบบสารสนเทศเพื่อสถานศึกษา</div>
+                    <div class="tag"><i class="fas fa-robot"></i> Smart Service / Kiosk System</div>
+                    <div class="tag"><i class="fas fa-university"></i> IT เพื่อการศึกษา</div>
+                    <div class="tag"><i class="fas fa-university"></i> IT เพื่อภาครัฐ</div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <h3 style="margin-bottom: 1rem;">สนใจติดต่อสอบถามหรือร่วมงาน?</h3>
+            <p style="opacity: 0.8;">ยินดีรับทุกคำแนะนำและความร่วมมือทางวิชาการ</p>
+            <div class="contact-footer">
+                <a href="tel:0930738643" title="โทร"><i class="fas fa-phone"></i></a>
+                <a href="#" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="#" title="Line"><i class="fab fa-line"></i></a>
+            </div>
+            <p style="margin-top: 2rem; font-size: 0.85rem; opacity: 0.6;">
+                &copy; 2023 พิสิษฐ์ หุนตระนี (Pisit Huntranee) | วิทยาลัยเทคนิคนางรอง
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
